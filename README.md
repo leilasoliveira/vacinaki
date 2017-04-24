@@ -1,2 +1,0 @@
-# vacinaki
-Gerenciador de vacinas
