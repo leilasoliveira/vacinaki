@@ -21,10 +21,7 @@ public class Vacina {
 	public String observacoes;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	public Epoca epocaInicial; /* idade recomendada */
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	public Epoca epocaFinal; /* idade recomendada */
+	public Epoca epoca; /* idade recomendada */
 
 	public Integer getId() {
 		return id;
@@ -57,22 +54,5 @@ public class Vacina {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
-
-	public Epoca getEpocaInicial() {
-		return epocaInicial;
-	}
-
-	public void setEpocaInicial(Epoca epocaInicial) {
-		this.epocaInicial = epocaInicial;
-	}
-
-	public Epoca getEpocaFinal() {
-		return epocaFinal;
-	}
-
-	public void setEpocaFinal(Epoca epocaFinal) {
-		this.epocaFinal = epocaFinal;
-	}
-	
 	
 }

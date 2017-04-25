@@ -18,10 +18,15 @@ public class Epoca {
 	
 	public String nome;
 	
-	public Integer valor;
+	public Integer valorInicial;
+	
+	public Integer valorLimite;
 	
 	@Enumerated(EnumType.STRING)
-	public TempoEnum unidadeTempo;
+	public TempoEnum unidadeTempoInicial;
+	
+	@Enumerated(EnumType.STRING)
+	public TempoEnum unidadeTempoLimite;
 
 	public Integer getId() {
 		return id;
@@ -39,21 +44,35 @@ public class Epoca {
 		this.nome = nome;
 	}
 
-	public Integer getValor() {
-		return valor;
+	public Integer getValorInicial() {
+		return valorInicial;
 	}
 
-	public void setValor(Integer valor) {
-		this.valor = valor;
+	public void setValorInicial(Integer valorInicial) {
+		this.valorInicial = valorInicial;
 	}
 
-	public TempoEnum getUnidadeTempo() {
-		return unidadeTempo;
+	public Integer getValorLimite() {
+		return valorLimite;
 	}
 
-	public void setUnidadeTempo(TempoEnum unidadeTempo) {
-		this.unidadeTempo = unidadeTempo;
+	public void setValorLimite(Integer valorLimite) {
+		this.valorLimite = valorLimite;
 	}
-	
-	
+
+	public TempoEnum getUnidadeTempoInicial() {
+		return unidadeTempoInicial;
+	}
+
+	public void setUnidadeTempoInicial(TempoEnum unidadeTempoInicial) {
+		this.unidadeTempoInicial = unidadeTempoInicial;
+	}
+
+	public TempoEnum getUnidadeTempoLimite() {
+		return unidadeTempoLimite;
+	}
+
+	public void setUnidadeTempoLimite(TempoEnum unidadeTempoLimite) {
+		this.unidadeTempoLimite = unidadeTempoLimite;
+	}
 }
