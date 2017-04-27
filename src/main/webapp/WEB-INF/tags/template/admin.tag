@@ -54,6 +54,11 @@
 	            <li><a href="<c:url value='/epoca'/>"><span class="glyphicon glyphicon-menu-hamburger"></span> List epoca</a></li>
 				
 				<li role="separator" class="divider"></li>
+				
+				<li><a href="<c:url value='/usuario/form'/>"><span class="glyphicon glyphicon-plus-sign"></span> Add usuario</a></li>	              
+	            <li><a href="<c:url value='/usuario'/>"><span class="glyphicon glyphicon-menu-hamburger"></span> List usuario</a></li>
+				
+				<li role="separator" class="divider"></li>
             </ul>
           </li>
         </ul>

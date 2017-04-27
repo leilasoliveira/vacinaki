@@ -4,10 +4,9 @@
 <template:admin>
 	<div>
 		<div class="container min-container">
-			<h2 class="basic-title">Add epoca</h2>
-			<form:form role="form" cssClass="well" commandName="epoca"
-				servletRelativeAction="/epoca/${epoca.id}" method="POST">
-
+			<h2 class="basic-title">Add usuario</h2>
+			<form:form role="form" cssClass="well" commandName="usuario"
+				servletRelativeAction="/usuario" method="POST">
 				<%@include file="form-inputs.jsp"%>
 				<button type="submit" class="btn btn-primary">Submit</button>
 

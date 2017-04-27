@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 public class Usuario {
 
@@ -22,6 +25,7 @@ public class Usuario {
 	public String email;
 	public String senha;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public LocalDate dataNasc;
 	
 	@OneToMany(fetch = FetchType.LAZY)
@@ -60,6 +64,29 @@ public class Usuario {
 	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc = dataNasc;
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Vacina> getVacinas() {
+		return vacinas;
+	}
+
+	public void setVacinas(List<Vacina> vacinas) {
+		this.vacinas = vacinas;
+	}
 	
 }
