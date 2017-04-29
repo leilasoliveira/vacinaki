@@ -18,18 +18,18 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	
-	public String nome;
+	private String nome;
 	
-	public String email;
-	public String senha;
+	private String email;
+	private String senha;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	public LocalDate dataNasc;
+	private LocalDate dataNasc;
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	public List<Vacina> vacinas;
+	private List<Vacina> vacinas;
 
 	public Usuario(String email, String senha) {
 		super();

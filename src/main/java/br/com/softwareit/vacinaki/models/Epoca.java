@@ -18,19 +18,19 @@ public class Epoca implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id;
+	private Integer id;
 	
-	public String nome;
+	private String nome;
 	
-	public Integer valorInicial;
+	private Integer valorInicial;
 	
-	public Integer valorLimite;
-	
-	@Enumerated(EnumType.STRING)
-	public TempoEnum unidadeTempoInicial;
+	private Integer valorLimite;
 	
 	@Enumerated(EnumType.STRING)
-	public TempoEnum unidadeTempoLimite;
+	private TempoEnum unidadeTempoInicial;
+	
+	@Enumerated(EnumType.STRING)
+	private TempoEnum unidadeTempoLimite;
 
 	public Integer getId() {
 		return id;
