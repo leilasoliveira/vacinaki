@@ -1,5 +1,6 @@
 package br.com.softwareit.vacinaki.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,16 +13,21 @@ public class Vacina {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id;
+	private Integer id;
 	
-	public String nome;
+	private String nome;
 	
-	public String descricao;
+	private String descricao;
 	
-	public String observacoes;
+	private String observacoes;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	public Epoca epoca; /* idade recomendada */
+	private Epoca epoca; /* idade recomendada */
+	
+	@Column(name = "epoca_id", insertable = false, updatable = false)
+	private Integer idEpoca;
+	
+	private Integer doses;
 
 	public Integer getId() {
 		return id;
@@ -54,5 +60,29 @@ public class Vacina {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
-	
+
+	public Epoca getEpoca() {
+		return epoca;
+	}
+
+	public void setEpoca(Epoca epoca) {
+		this.epoca = epoca;
+	}
+
+	public Integer getIdEpoca() {
+		return idEpoca;
+	}
+
+	public void setIdEpoca(Integer idEpoca) {
+		this.idEpoca = idEpoca;
+	}
+
+	public Integer getDoses() {
+		return doses;
+	}
+
+	public void setDoses(Integer doses) {
+		this.doses = doses;
+	}
+
 }

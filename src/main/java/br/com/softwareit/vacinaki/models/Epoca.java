@@ -1,5 +1,7 @@
 package br.com.softwareit.vacinaki.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,7 +12,9 @@ import javax.persistence.Id;
 import br.com.softwareit.vacinaki.models.enuns.TempoEnum;
 
 @Entity
-public class Epoca {
+public class Epoca implements Serializable {
+
+	private static final long serialVersionUID = -9030950373532995021L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

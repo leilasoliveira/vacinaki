@@ -59,6 +59,11 @@
 	            <li><a href="<c:url value='/usuario'/>"><span class="glyphicon glyphicon-menu-hamburger"></span> List usuario</a></li>
 				
 				<li role="separator" class="divider"></li>
+				
+				<li><a href="<c:url value='/vacina/form'/>"><span class="glyphicon glyphicon-plus-sign"></span> Add vacina</a></li>	              
+	            <li><a href="<c:url value='/vacina'/>"><span class="glyphicon glyphicon-menu-hamburger"></span> List vacina</a></li>
+				
+				<li role="separator" class="divider"></li>
             </ul>
           </li>
         </ul>
