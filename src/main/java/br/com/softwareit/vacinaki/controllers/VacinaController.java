@@ -32,12 +32,22 @@ public class VacinaController {
 	public ModelAndView form(Vacina vacina) {
 		ModelAndView modelAndView = new ModelAndView("vacina/form-add");
 		modelAndView.addObject("listaEpocas", epocaDao.all());
-//		modelAndView.addObject("epoca", new Epoca());
 		return modelAndView;
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(params ="more" , method = RequestMethod.POST)
+	public ModelAndView saveAndAddMore(@Valid Vacina vacina, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return form(vacina);
+		}
+		
+		vacina.setEpoca(epocaDao.findById(vacina.getIdEpoca()));
+		vacinaDao.save(vacina);
+		return new ModelAndView("redirect:/vacina/form");
+	}
+	
+	@RequestMapping(params = "save", method = RequestMethod.POST)
 	public ModelAndView save(@Valid Vacina vacina, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return form(vacina);

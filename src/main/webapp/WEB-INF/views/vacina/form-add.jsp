@@ -8,8 +8,8 @@
 			<form:form role="form" cssClass="well" commandName="vacina"
 				servletRelativeAction="/vacina" method="POST">
 				<%@include file="form-inputs.jsp"%>
-				<button type="submit" class="btn btn-primary">Submit</button>
-
+				<button type="submit" class="btn btn-primary" name="save">Submit</button>
+				<button type="submit" class="btn btn-default" name="more">Save and add more</button>
 			</form:form>
 		</div>
 	</div>
