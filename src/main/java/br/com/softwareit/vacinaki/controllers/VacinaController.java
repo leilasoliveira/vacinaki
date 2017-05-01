@@ -1,5 +1,8 @@
 package br.com.softwareit.vacinaki.controllers;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -13,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.softwareit.vacinaki.daos.EpocaDao;
+import br.com.softwareit.vacinaki.daos.PaginatorQueryHelper;
 import br.com.softwareit.vacinaki.daos.VacinaDao;
-import br.com.softwareit.vacinaki.models.Epoca;
+import br.com.softwareit.vacinaki.models.PaginatedList;
 import br.com.softwareit.vacinaki.models.Vacina;
 
 @Controller
@@ -22,6 +26,9 @@ import br.com.softwareit.vacinaki.models.Vacina;
 @Transactional
 public class VacinaController {
 
+	@PersistenceContext
+	private EntityManager manager;
+	
 	@Autowired
 	private VacinaDao vacinaDao;
 	
@@ -42,7 +49,7 @@ public class VacinaController {
 			return form(vacina);
 		}
 		
-		vacina.setEpoca(epocaDao.findById(vacina.getIdEpoca()));
+		vacina.setEpoca(epocaDao.findOne(vacina.getIdEpoca()));
 		vacinaDao.save(vacina);
 		return new ModelAndView("redirect:/vacina/form");
 	}
@@ -53,7 +60,7 @@ public class VacinaController {
 			return form(vacina);
 		}
 		
-		vacina.setEpoca(epocaDao.findById(vacina.getIdEpoca()));
+		vacina.setEpoca(epocaDao.findOne(vacina.getIdEpoca()));
 		
 		vacinaDao.save(vacina);
 		return new ModelAndView("redirect:/vacina");
@@ -62,8 +69,8 @@ public class VacinaController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ModelAndView load(@PathVariable("id") Integer id) {
 		ModelAndView modelAndView = new ModelAndView("vacina/form-update");
-		Vacina vacina = vacinaDao.findById(id);
-		vacina.setEpoca(epocaDao.findById(vacina.getIdEpoca()));
+		Vacina vacina = vacinaDao.findOne(id);
+		vacina.setEpoca(epocaDao.findOne(vacina.getIdEpoca()));
 		modelAndView.addObject("vacina", vacina);
 		modelAndView.addObject("listaEpocas", epocaDao.all());
 		return modelAndView;
@@ -73,15 +80,25 @@ public class VacinaController {
 	public ModelAndView list(
 			@RequestParam(defaultValue = "0", required = false) int page) {
 		ModelAndView modelAndView = new ModelAndView("vacina/list");
-		modelAndView.addObject("paginatedList", vacinaDao.paginated(page, 10));
+		
+		modelAndView.addObject("paginatedList", all(page, 10));
 		return modelAndView;
+	}
+	
+	private PaginatedList all(int page, int resultsPerPage) {
+		TypedQuery<Vacina> listQuery = manager.createQuery("select v from Vacina v join v.epoca e order by v.nome asc, e.ordem asc", Vacina.class);
+		
+		TypedQuery<Number> countQuery = manager.createQuery(
+	            "select count(1) from Vacina v join v.epoca e", Number.class);
+		
+		return new PaginatorQueryHelper().list(listQuery, countQuery, page, resultsPerPage);
 	}
 
 	// just because get is easier here. Be my guest if you want to change.
 	@RequestMapping(method = RequestMethod.GET, value = "/remove/{id}")
 	public String remove(@PathVariable("id") Integer id) {
-		Vacina vacina = vacinaDao.findById(id);
-		vacinaDao.remove(vacina);
+		Vacina vacina = vacinaDao.findOne(id);
+		vacinaDao.delete(vacina);
 		return "redirect:/vacina";
 	}
 
@@ -92,8 +109,8 @@ public class VacinaController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView("vacina/form-update");
 		}
-		vacina.setEpoca(epocaDao.findById(vacina.getIdEpoca()));
-		vacinaDao.update(vacina);
+		vacina.setEpoca(epocaDao.findOne(vacina.getIdEpoca()));
+		vacinaDao.save(vacina);
 		return new ModelAndView("redirect:/vacina");
 	}
 }

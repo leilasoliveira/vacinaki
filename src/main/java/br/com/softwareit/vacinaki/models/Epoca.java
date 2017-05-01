@@ -31,6 +31,8 @@ public class Epoca implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private TempoEnum unidadeTempoLimite;
+	
+	private Integer ordem;
 
 	public Integer getId() {
 		return id;
@@ -79,4 +81,14 @@ public class Epoca implements Serializable {
 	public void setUnidadeTempoLimite(TempoEnum unidadeTempoLimite) {
 		this.unidadeTempoLimite = unidadeTempoLimite;
 	}
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
+	}
+
+	
 }
