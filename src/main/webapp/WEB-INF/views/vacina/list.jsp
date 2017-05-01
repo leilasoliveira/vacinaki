@@ -20,6 +20,7 @@
 	                  	<td>descricao</td>
 						<td>epoca</td>
 						<td>doses</td>
+						<td>observacoes</td>
 						<td></td>
 	                  </tr>
                   </thead>
